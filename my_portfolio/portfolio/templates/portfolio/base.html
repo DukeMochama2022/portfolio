@@ -1,0 +1,90 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Portfolio{% endblock %}</title>
+    {% load static %}
+    {% tailwind_css %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- ✅ Navbar -->
+    <nav class="bg-gray-900 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-center items-center">
+                <div class="flex space-x-4">
+                    <!-- Brand -->
+                    <div>
+                        <a href="{% url 'portfolio:home' %}" class="flex items-center mx-5 py-5 px-2 text-white font-bold text-lg">
+                            Duke Mochama
+                        </a>
+                    </div>
+
+                    <!-- Primary Nav -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="{% url 'portfolio:about' %}" class="py-5 px-3 text-white hover:text-gray-200">About</a>
+                        <a href="{% url 'portfolio:projects' %}" class="py-5 px-3 text-white hover:text-gray-200">Projects</a>
+                        <a href="{% url 'portfolio:contact' %}" class="py-5 px-3 text-white hover:text-gray-200">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-white focus:outline-none">
+                        ☰
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-500 text-center">
+            <a href="{% url 'portfolio:about' %}" class="block py-2 px-4 text-white">About</a>
+            <a href="{% url 'portfolio:projects' %}" class="block py-2 px-4 text-white">Projects</a>
+            <a href="{% url 'portfolio:contact' %}" class="block py-2 px-4 text-white">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- ✅ Footer -->
+    <footer class="bg-gray-900 text-white py-6">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400">&copy; 2025 Duke Mochama. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="https://twitter.com/Mochama1Duke" target="_blank" class="hover:text-blue-400">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="https://github.com/DukeMochama2022" target="_blank" class="hover:text-gray-400">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/duke-mochama-27257525b/" target="_blank" class="hover:text-blue-500">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a href="https://instagram.com/yourhandle" target="_blank" class="hover:text-pink-400">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+
+    <!-- ✅ Mobile Menu Toggle Script -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

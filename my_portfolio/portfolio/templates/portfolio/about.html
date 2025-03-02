@@ -1,0 +1,51 @@
+{% extends 'portfolio/base.html' %}
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<section class="bg-gray-100 py-16">
+    <div class="container mx-auto px-6 lg:px-20">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Me</h2>
+            <p class="text-gray-600 text-lg leading-relaxed">
+                Hi! I'm a passionate <strong>developer</strong> with expertise in Django, JavaScript, and modern web technologies. 
+                I love building innovative solutions, working with AI, and improving user experiences.  
+                My goal is to create impactful projects that solve real-world problems.
+            </p>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="max-w-4xl mx-auto mt-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Experience</h2>
+
+            {% for experience in experiences %}
+            <div class="mb-6 p-6 bg-white shadow-lg rounded-lg">
+                <h3 class="text-xl font-semibold text-gray-700">{{ experience.job_title }}</h3>
+                <p class="text-gray-500 font-medium">{{ experience.company }} • {{ experience.years }}</p>
+                <p class="text-gray-600 mt-2">{{ experience.description }}</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    {% for skill in experience.skills %}
+                        <span class="bg-gray-200 text-gray-800 font-mono px-3 py-1 rounded-lg text-sm">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="max-w-4xl mx-auto mt-12 p-6 bg-white shadow-lg rounded-2xl">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Certifications</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {% for cert in certifications %}
+                <div class="flex flex-col items-center bg-gray-100 p-4 rounded-xl shadow-sm transition-transform hover:scale-105">
+                    <h3 class="text-lg font-semibold text-gray-900 text-center">{{ cert.name }}</h3>
+                    <p class="text-gray-600 text-sm text-center">
+                        {{ cert.organization }} - <span class="text-blue-500 font-medium">{{ cert.year }}</span>
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+    </div>
+</section>
+{% endblock %}
